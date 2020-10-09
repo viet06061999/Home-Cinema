@@ -1,0 +1,61 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+      # This is Android review pull request box (Not necessary to change)
+      ROOM_ID: "96370317"
+      # Insert the chatwork accounts which you want to mention when the pull request was verified
+      MEMBERS: "[To:5044000] Nguyen Bac Viet"
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+          command: sudo chmod +x ./gradlew
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+
+      - run:
+          name: Sending notification on fail
+          when: on_fail
+          command: |
+            if [[ true ]];  then
+              curl -X POST -H "X-ChatWorkToken: $CHATWORK_API_KEY" -d \
+                "body= $MEMBERS [info][title]Repository : $CIRCLE_PROJECT_REPONAME (problem)[/title]Your pull request is failed (pray)
+              -> Click here for more detail: $CIRCLE_BUILD_URL
+              - Branch: $CIRCLE_BRANCH
+              - Pull request: $CIRCLE_PULL_REQUEST[/info]
+                "\
+                "https://api.chatwork.com/v2/rooms/$ROOM_ID/messages"
+            fi
+      - run:
+          name: Sending notification on success
+          when: on_success
+          command: |
+            if [[ true ]];  then
+              curl -X POST -H "X-ChatWorkToken: $CHATWORK_API_KEY" -d \
+                "body= $MEMBERS [info][title]Repository : $CIRCLE_PROJECT_REPONAME (ok2)[/title]Your pull request is successful (F)(F)(F)
+              -> Click here for more detail: $CIRCLE_BUILD_URL
+              - Branch: $CIRCLE_BRANCH
+              - Pull request: $CIRCLE_PULL_REQUEST[/info]
+                "\
+                "https://api.chatwork.com/v2/rooms/$ROOM_ID/messages"
+            fi
