@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#FFD185</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="color_shank">#242426</color>
+    <color name="color_grandis">#FFD185</color>
+    <color name="color_woodsmoke">#101012</color>
 </resources>
