@@ -2,6 +2,7 @@ package com.sun.homecinema.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.sun.homecinema.utils.ApiConfig
 import com.sun.homecinema.utils.GenreUtil
 
 @Entity(tableName = "movie")
@@ -33,8 +34,8 @@ data class Movie(
         movieResponse.description,
         movieResponse.getCompanyPopular()[0].name,
         movieResponse.getCompanyPopular()[0].logo,
-        movieResponse.poster,
-        movieResponse.background,
+        ApiConfig.getUrlImage(movieResponse.poster),
+        ApiConfig.getUrlImage(movieResponse.background),
         movieResponse.releaseDate
     )
 }
