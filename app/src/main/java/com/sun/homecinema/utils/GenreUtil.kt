@@ -27,4 +27,8 @@ object GenreUtil {
     fun getNameGenre(id: Int): String = genres.first {
         it.first == id
     }.second
+
+    fun getIdGenre(name: String) =  genres.first {
+        it.second == name
+    }.first
 }
