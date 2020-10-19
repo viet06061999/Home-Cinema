@@ -1,5 +1,6 @@
 package com.sun.homecinema.data.source.remote
 
+import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.ActorResponse
 import com.sun.homecinema.data.model.MovieListResponse
 import com.sun.homecinema.data.source.ActorDataSource
@@ -12,6 +13,6 @@ class ActorRemoteDataSource(private val actorService: ActorService) :
     override fun getMovieOfActor(actorId: Int): Observable<MovieListResponse> =
         actorService.getMovieOfActor(actorId)
 
-    override fun getDetailActor(actorId: Int): Observable<ActorResponse> =
+    override fun getDetailActor(actorId: Int): Observable<Actor> =
         actorService.getDetailActor(actorId)
 }

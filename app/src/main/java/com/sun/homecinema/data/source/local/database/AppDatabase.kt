@@ -12,7 +12,7 @@ import com.sun.homecinema.data.source.local.database.dao.MovieDao
     version = DatabaseConfig.DATABASE_VERSION,
     exportSchema = false
 )
-abstract class AppDataBase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
     abstract fun actorDao(): ActorDao
