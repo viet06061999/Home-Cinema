@@ -2,7 +2,6 @@ package com.sun.homecinema.data.repository
 
 import com.sun.homecinema.data.model.*
 import com.sun.homecinema.data.source.MovieDataSource
-import com.sun.homecinema.utils.GenreUtil
 import io.reactivex.Observable
 
 class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
