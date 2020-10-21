@@ -7,4 +7,7 @@ import com.sun.mvvm.base.BindingFragment
 class MoviesFragment : BindingFragment<FragmentMoviesBinding>()  {
 
     override fun getLayoutResId() = R.layout.fragment_movies
+
+    override fun setupView() {
+    }
 }

@@ -8,15 +8,52 @@
     <fragment
         android:id="@+id/navigationHome"
         android:name="com.sun.homecinema.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/actionHomeToList"
+            app:destination="@id/movieTypeFragment" />
+        <action
+            android:id="@+id/actionHomeToDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigationMovies"
         android:name="com.sun.homecinema.ui.movies.MoviesFragment"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies">
+    </fragment>
 
     <fragment
         android:id="@+id/navigationFavorite"
         android:name="com.sun.homecinema.ui.favorite.FavoriteFragment"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/actionFavoriteToDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieTypeFragment"
+        android:name="com.sun.homecinema.ui.home.MovieTypeFragment"
+        android:label="fragment_movie_genre"
+        tools:layout="@layout/fragment_movie_genre">
+        <argument
+            android:name="title"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/actionMovieTypeListTodetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.sun.homecinema.ui.detail.DetailMovieFragment"
+        android:label="fragment_detail_movie"
+        tools:layout="@layout/fragment_detail_movie">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
