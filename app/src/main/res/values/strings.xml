@@ -4,4 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_movies">Movies</string>
     <string name="title_favorite">Favorite</string>
+    <string name="title_popular">Popular Now</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="title_top_rate">Top Rate</string>
+    <string name="title_see_all">See all</string>
 </resources>
