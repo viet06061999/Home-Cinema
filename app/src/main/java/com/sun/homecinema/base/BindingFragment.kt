@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.sun.homecinema.utils.showToast
 import java.lang.IllegalStateException
 
 abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
@@ -28,11 +29,19 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
             .inflate<T>(inflater, getLayoutResId(), container, false)
             .apply { _binding = this }.root
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupView()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
+    fun showToast(msg: String) = requireContext().showToast(msg)
+
+    abstract fun setupView()
     companion object{
         private const val EXCEPTION = "Binding only is valid after onCreateView"
     }
