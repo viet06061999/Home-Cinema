@@ -1,4 +1,4 @@
-package com.sun.mvvm.base
+package com.sun.homecinema.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.sun.homecinema.utils.showToast
 import java.lang.IllegalStateException
 
 abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
     @LayoutRes
     abstract fun getLayoutResId(): Int
+
+    abstract val viewModel: RxViewModel
 
     private var _binding: T? = null
 
@@ -31,6 +34,7 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.errorException.observe(viewLifecycleOwner, Observer(::showToast))
         setupView()
     }
 

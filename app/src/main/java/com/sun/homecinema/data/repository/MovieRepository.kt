@@ -9,7 +9,7 @@ interface MovieRepository {
 
     fun getMoviesByGenreId(id: Int): Observable<List<Movie>>
 
-    fun getDetailMovie(movieId: Int): Observable<Movie>
+    fun getDetailMovie(movieId: Int): Observable<MovieResponse>
 
     fun getActors(movieId: Int): Observable<List<Actor>>
 

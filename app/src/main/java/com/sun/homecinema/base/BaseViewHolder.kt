@@ -1,4 +1,4 @@
-package com.sun.mvvm.base
+package com.sun.homecinema.base
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding

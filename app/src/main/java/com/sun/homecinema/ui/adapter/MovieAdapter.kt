@@ -7,7 +7,7 @@ import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.databinding.ItemMoviePosterBinding
 import com.sun.homecinema.utils.hide
 import com.sun.homecinema.utils.setHeight
-import com.sun.mvvm.base.BaseViewHolder
+import com.sun.homecinema.base.BaseViewHolder
 
 class MovieAdapter(private val listener: (Movie) -> Unit) :
     BaseAdapter<Movie, ItemMoviePosterBinding>(listener) {

@@ -17,6 +17,8 @@ data class MovieResponse(
     var background: String,
     @SerializedName("release_date")
     var releaseDate: String,
+    @SerializedName("runtime")
+    var runtime: Int,
     @SerializedName("genre_ids")
     var genreId: List<Int>?,
     @SerializedName("genres")
@@ -30,7 +32,7 @@ data class MovieResponse(
         val companies = company?.filter {
             !it.logo.isNullOrEmpty()
         }
-        return  return if (companies.isNullOrEmpty()) listOf(companyDefault) else companies
+        return return if (companies.isNullOrEmpty()) listOf(companyDefault) else companies
     }
 
     fun getGenreDefaultId(): Int = genreId?.get(0) ?: genre?.get(0)?.id ?: -1

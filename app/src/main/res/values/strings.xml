@@ -8,4 +8,11 @@
     <string name="title_upcoming">Upcoming</string>
     <string name="title_top_rate">Top Rate</string>
     <string name="title_see_all">See all</string>
+    <string name="title_movie_of">A movie Of:</string>
+    <string name="title_actor">Actors</string>
+    <string name="title_recommend">Recommend</string>
+    <string name="title_minutes">minutes</string>
+
+    <string name="default_font" translatable="false">sans-serif-light</string>
+
 </resources>
