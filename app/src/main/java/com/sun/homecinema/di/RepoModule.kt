@@ -1,9 +1,7 @@
 package com.sun.homecinema.di
 
 import androidx.room.Room
-import com.sun.homecinema.data.repository.ActorRepositoryImpl
-import com.sun.homecinema.data.repository.FavoriteRepositoryImpl
-import com.sun.homecinema.data.repository.MovieRepositoryImpl
+import com.sun.homecinema.data.repository.*
 import com.sun.homecinema.data.source.ActorDataSource
 import com.sun.homecinema.data.source.FavoriteDataSource
 import com.sun.homecinema.data.source.MovieDataSource
@@ -31,17 +29,17 @@ val dbModule = module {
 val favoriteRepoModule = module {
     single<FavoriteDataSource.Local> { FavoriteLocalDataSource(get(), get()) }
 
-    single { FavoriteRepositoryImpl(get()) }
+    single<FavoriteRepository> { FavoriteRepositoryImpl(get()) }
 }
 
 val movieRepoModule = module {
     single<MovieDataSource.Remote> { MovieRemoteDataSource(get()) }
 
-    single { MovieRepositoryImpl(get()) }
+    single<MovieRepository> { MovieRepositoryImpl(get()) }
 }
 
 val actorRepoModule = module {
     single<ActorDataSource.Remote> { ActorRemoteDataSource(get()) }
 
-    single { ActorRepositoryImpl(get()) }
+    single<ActorRepository> { ActorRepositoryImpl(get()) }
 }

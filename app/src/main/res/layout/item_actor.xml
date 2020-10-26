@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="actor"
+            type="com.sun.homecinema.data.model.Actor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_20">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageActor"
+            image="@{actor.avatar}"
+            android:layout_width="@dimen/dp_128"
+            android:layout_height="@dimen/dp_210"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/textNameMovie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/cornerImageView"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="@dimen/dp_1" />
+
+        <TextView
+            android:id="@+id/textNameMovie"
+            style="@style/TextTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{actor.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageActor"
+            app:layout_constraintStart_toStartOf="@+id/imageActor" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

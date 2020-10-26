@@ -1,7 +1,6 @@
 package com.sun.homecinema.ui.home
 
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.sun.homecinema.R
 import com.sun.homecinema.data.model.Movie
@@ -10,12 +9,12 @@ import com.sun.homecinema.databinding.FragmentHomeBinding
 import com.sun.homecinema.ui.adapter.MovieAdapter
 import com.sun.homecinema.ui.adapter.PopularAdapter
 import com.sun.homecinema.ui.adapter.UpcomingAdapter
-import com.sun.mvvm.base.BindingFragment
+import com.sun.homecinema.base.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(), View.OnClickListener {
 
-    private val homeViewModel by sharedViewModel<HomeViewModel>()
+    override val viewModel by sharedViewModel<HomeViewModel>()
 
     private val popularAdapter = PopularAdapter(::onItemClick)
     private val upcomingAdapter = UpcomingAdapter(::onItemClick)
@@ -25,10 +24,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(), View.OnClickListene
 
     override fun setupView() {
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.homeVM = viewModel
         binding.recyclerViewUpcoming.adapter = upcomingAdapter
         binding.recyclerViewPopular.adapter = popularAdapter
         binding.recyclerViewTopRate.adapter = topRateAdapter
-        observer()
         initListener()
     }
 
@@ -36,27 +35,20 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(), View.OnClickListene
         var title = ""
         when (view?.id) {
             binding.textSeeAllPopular.id -> {
-                homeViewModel.setMovies(MovieType.Popular)
+                viewModel.setMovies(MovieType.Popular)
                 title = TITLE_POPULAR
             }
             binding.textSeeAllUpcoming.id -> {
-                homeViewModel.setMovies(MovieType.Upcoming)
+                viewModel.setMovies(MovieType.Upcoming)
                 title = TITLE_UPCOMING
             }
             binding.textSeeAllTopRate.id -> {
-                homeViewModel.setMovies(MovieType.TopRate)
+                viewModel.setMovies(MovieType.TopRate)
                 title = TITLE_TOP_RATE
             }
         }
         val action = HomeFragmentDirections.actionHomeToList(title)
         findNavController().navigate(action)
-    }
-
-    private fun observer() = with(homeViewModel) {
-        popularMovies.observe(viewLifecycleOwner, Observer(popularAdapter::submitList))
-        upcomingMovies.observe(viewLifecycleOwner, Observer(upcomingAdapter::submitList))
-        topRateMovies.observe(viewLifecycleOwner, Observer(topRateAdapter::submitList))
-        error.observe(viewLifecycleOwner, Observer(this@HomeFragment::showToast))
     }
 
     private fun initListener() {

@@ -6,7 +6,7 @@ import com.sun.homecinema.base.BaseAdapter
 import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.databinding.ItemPopularBinding
 import com.sun.homecinema.utils.setWith
-import com.sun.mvvm.base.BaseViewHolder
+import com.sun.homecinema.base.BaseViewHolder
 
 class PopularAdapter(private val listener: (Movie) -> Unit) :
     BaseAdapter<Movie, ItemPopularBinding>(listener) {

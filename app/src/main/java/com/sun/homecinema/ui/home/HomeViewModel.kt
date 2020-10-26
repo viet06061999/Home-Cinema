@@ -7,6 +7,7 @@ import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.data.model.MovieType
 import com.sun.homecinema.data.repository.MovieRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,10 +29,6 @@ class HomeViewModel(
     val movies: LiveData<List<Movie>>
         get() = _movies
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String>
-        get() = _error
-
     init {
         getPopular()
         getUpcoming()
@@ -44,10 +41,9 @@ class HomeViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _popularMovies.value = it },
-                { _error.value = it.message }
-            ).let {
-                addToDisposable(it)
-            }
+                { error.value = it.message }
+            )
+            .addTo(disposables)
     }
 
     private fun getUpcoming() {
@@ -62,8 +58,9 @@ class HomeViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _upcomingMovies.value = it },
-                { _error.value = it.message }
-            ).let { addToDisposable(it) }
+                { error.value = it.message }
+            )
+            .addTo(disposables)
     }
 
     fun setMovies(type: MovieType) {
@@ -80,7 +77,8 @@ class HomeViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _topRateMovies.value = it },
-                { _error.value = it.message }
-            ).let { addToDisposable(it) }
+                { error.value = it.message }
+            )
+            .addTo(disposables)
     }
 }
