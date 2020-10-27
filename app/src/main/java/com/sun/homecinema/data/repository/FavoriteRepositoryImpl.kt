@@ -4,6 +4,7 @@ import com.sun.homecinema.data.model.MovieWithActors
 import com.sun.homecinema.data.source.FavoriteDataSource
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 class FavoriteRepositoryImpl(private val local: FavoriteDataSource.Local) :
     FavoriteRepository {
@@ -16,4 +17,7 @@ class FavoriteRepositoryImpl(private val local: FavoriteDataSource.Local) :
 
     override fun deleteFavorite(movieWithActors: MovieWithActors): Completable =
         local.deleteFavorites(movieWithActors)
+
+    override fun isFavorite(movieId: Int): Single<Boolean> =
+        local.isFavorite(movieId)
 }

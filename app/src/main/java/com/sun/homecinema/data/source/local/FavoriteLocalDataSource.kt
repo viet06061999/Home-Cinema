@@ -6,6 +6,7 @@ import com.sun.homecinema.data.source.local.database.dao.ActorDao
 import com.sun.homecinema.data.source.local.database.dao.MovieDao
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import java.lang.Exception
 
 class FavoriteLocalDataSource(
@@ -32,4 +33,7 @@ class FavoriteLocalDataSource(
 
     override fun deleteFavorites(movieWithActors: MovieWithActors) =
         movieDao.delete(movieWithActors.movie, movieWithActors.actors)
+
+    override fun isFavorite(movieId: Int): Single<Boolean> =
+        movieDao.isFavorite(movieId)
 }

@@ -9,7 +9,7 @@ import com.sun.homecinema.utils.setHeight
 import com.sun.homecinema.base.BaseViewHolder
 
 class UpcomingAdapter(private val listener: (Movie) -> Unit) :
-    BaseAdapter<Movie, ItemMoviePosterBinding>(listener) {
+    BaseAdapter<Movie, ItemMoviePosterBinding>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

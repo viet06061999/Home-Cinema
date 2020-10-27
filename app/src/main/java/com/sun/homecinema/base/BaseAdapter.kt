@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
 import com.sun.homecinema.data.model.GeneraEntity
 
-abstract class BaseAdapter<T : GeneraEntity, B : ViewBinding>(private val listener: (T) -> Unit) :
+abstract class BaseAdapter<T : GeneraEntity, B : ViewBinding> :
     ListAdapter<T, BaseViewHolder<T, B>>(BaseDiffUtil<T>()),
     BindableAdapter<List<T>> {
 

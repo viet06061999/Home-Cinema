@@ -9,8 +9,6 @@ import com.sun.homecinema.data.repository.MovieRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HomeViewModel(
     private val movieRepository: MovieRepository
@@ -48,12 +46,6 @@ class HomeViewModel(
 
     private fun getUpcoming() {
         movieRepository.getMoviesByType(MovieType.Upcoming)
-            .map {
-                it.filter { movie ->
-                    SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                        .parse(movie.releaseDate)?.time ?: 0 > Date().time
-                }
-            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

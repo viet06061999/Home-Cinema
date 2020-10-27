@@ -25,7 +25,7 @@
                     android:id="@+id/imageBackground"
                     image="@{detailViewModel.detail.background}"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp_210"
                     android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +82,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewGenre"
+                    data="@{detailViewModel.detail.genre}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -145,6 +146,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerActor"
+                    data="@{detailViewModel.actors}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_8"
@@ -168,6 +170,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewRecommend"
+                    data="@{detailViewModel.recommends}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/dp_16"

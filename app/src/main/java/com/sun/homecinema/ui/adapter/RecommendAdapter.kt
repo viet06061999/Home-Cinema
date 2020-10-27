@@ -3,13 +3,13 @@ package com.sun.homecinema.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sun.homecinema.base.BaseAdapter
+import com.sun.homecinema.base.BaseViewHolder
 import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.databinding.ItemMoviePosterBinding
 import com.sun.homecinema.utils.hide
 import com.sun.homecinema.utils.setHeight
-import com.sun.homecinema.base.BaseViewHolder
 
-class MovieAdapter(private val listener: (Movie) -> Unit) :
+class RecommendAdapter(private val listener: (Movie) -> Unit) :
     BaseAdapter<Movie, ItemMoviePosterBinding>() {
 
     override fun onCreateViewHolder(
@@ -22,10 +22,10 @@ class MovieAdapter(private val listener: (Movie) -> Unit) :
             false
         )
         itemView.root.setHeight(0.4f)
-        return MovieHolder(itemView, listener)
+        return RecommendHolder(itemView, listener)
     }
 
-    class MovieHolder(
+    class RecommendHolder(
         private val itemMoviePosterBinding: ItemMoviePosterBinding,
         listener: (Movie) -> Unit
     ) : BaseViewHolder<Movie, ItemMoviePosterBinding>(itemMoviePosterBinding, listener) {

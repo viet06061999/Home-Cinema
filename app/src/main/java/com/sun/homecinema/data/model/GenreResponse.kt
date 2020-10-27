@@ -7,4 +7,11 @@ data class GenreResponse(
     val id: Int,
     @SerializedName("name")
     val name: String
-)
+): GeneraEntity {
+
+    override fun areItemsTheSame(newItem: GeneraEntity): Boolean =
+        newItem is GenreResponse && this.id == newItem.id
+
+    override fun areContentsTheSame(newItem: GeneraEntity): Boolean =
+        newItem is GenreResponse && this == newItem
+}
