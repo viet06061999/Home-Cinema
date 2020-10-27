@@ -50,10 +50,23 @@
     <fragment
         android:id="@+id/detailMovieFragment"
         android:name="com.sun.homecinema.ui.detail.DetailMovieFragment"
-        android:label="fragment_detail_movie"
-        tools:layout="@layout/fragment_detail_movie">
+        tools:layout="@layout/fragment_detail_movie" >
         <argument
             android:name="movieId"
             app:argType="integer" />
+        <action
+            android:id="@+id/actionDetailToItself"
+            app:destination="@+id/detailMovieFragment"/>
+        <action
+            android:id="@+id/actioDetailToTrailer"
+            app:destination="@id/playTrailerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playTrailerFragment"
+        android:name="com.sun.homecinema.ui.playtrailer.PlayTrailerFragment"
+        tools:layout="@layout/fragment_play_trailer" >
+        <action
+            android:id="@+id/actionPlayTrailerFragmentToSelf"
+            app:destination="@id/playTrailerFragment" />
     </fragment>
 </navigation>

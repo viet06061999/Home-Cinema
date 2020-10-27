@@ -35,8 +35,12 @@ class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
         } ?: Video()
 
     private fun getMovies(moviesResponse: MovieListResponse): List<Movie> =
-        moviesResponse.movies.map {
-            Movie(it)
+        moviesResponse.movies.mapNotNull {
+            try {
+                Movie(it)
+            } catch (exception: IllegalArgumentException) {
+                null
+            }
         }
 
     companion object {

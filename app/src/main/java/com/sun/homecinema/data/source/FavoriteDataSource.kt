@@ -3,6 +3,7 @@ package com.sun.homecinema.data.source
 import com.sun.homecinema.data.model.MovieWithActors
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 interface FavoriteDataSource {
 
@@ -13,5 +14,7 @@ interface FavoriteDataSource {
         fun insertFavorites(movieWithActors: MovieWithActors): Completable
 
         fun deleteFavorites(movieWithActors: MovieWithActors): Completable
+
+        fun isFavorite(movieId: Int): Single<Boolean>
     }
 }

@@ -1,6 +1,7 @@
 package com.sun.homecinema.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.sun.homecinema.utils.GenreUtil
 
 data class MovieResponse(
     @SerializedName("id")
@@ -28,12 +29,18 @@ data class MovieResponse(
 ) {
 
     fun getCompanyPopular(): List<CompanyResponse> {
-        val companyDefault = company?.get(0) ?: CompanyResponse()
-        val companies = company?.filter {
-            !it.logo.isNullOrEmpty()
-        }
-        return return if (companies.isNullOrEmpty()) listOf(companyDefault) else companies
+            val companyDefault = company?.getOrNull(0) ?: CompanyResponse()
+            val companies = company?.filter {
+                !it.logo.isNullOrEmpty()
+            }
+            return if (companies.isNullOrEmpty()) listOf(companyDefault) else companies
+
     }
 
-    fun getGenreDefaultId(): Int = genreId?.get(0) ?: genre?.get(0)?.id ?: -1
+    fun getGenreDefaultId(): Int =
+        genreId?.getOrNull(0) ?: GenreUtil.getIdGenre(ACTION_MOVIE)
+
+    companion object {
+        private const val ACTION_MOVIE = "Action"
+    }
 }

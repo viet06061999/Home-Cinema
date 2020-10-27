@@ -6,7 +6,7 @@ object ApiConfig {
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val API_KEY = "api_key"
 
-    fun getUrlImage(url: String) = BASE_URL_IMAGE + url
+    fun getUrlImage(url: String?) = BASE_URL_IMAGE + url
 }
 
 object ApiEndPoint {
