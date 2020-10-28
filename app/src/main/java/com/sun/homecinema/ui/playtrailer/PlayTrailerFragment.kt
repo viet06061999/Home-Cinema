@@ -12,7 +12,6 @@ class PlayTrailerFragment : BindingFragment<FragmentPlayTrailerBinding>() {
 
     override fun getLayoutResId() = R.layout.fragment_play_trailer
 
-    private val detailViewModel by sharedViewModel<DetailViewModel>()
     override val viewModel: RxViewModel
         get() = TODO("Not yet implemented")
 
