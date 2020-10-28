@@ -43,7 +43,8 @@ class DetailMovieFragment : BindingFragment<FragmentDetailMovieBinding>() {
             findNavController().popBackStack()
         }
         binding.imageButtonPlay.setOnClickListener {
-            val action = DetailMovieFragmentDirections.actioDetailToTrailer()
+            val action =
+                DetailMovieFragmentDirections.actioDetailToTrailer(viewModel.detail.value?.id ?: -1)
             findNavController().navigate(action)
         }
     }

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.sun.homecinema.R
 import com.sun.homecinema.utils.showToast
 import java.lang.IllegalStateException
 
@@ -34,7 +35,9 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.errorException.observe(viewLifecycleOwner, Observer(::showToast))
+        viewModel.errorException.observe(viewLifecycleOwner, Observer {
+            showToast(getString(R.string.default_error))
+        })
         setupView()
     }
 
@@ -46,7 +49,8 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
     fun showToast(msg: String) = requireContext().showToast(msg)
 
     abstract fun setupView()
-    companion object{
+
+    companion object {
         private const val EXCEPTION = "Binding only is valid after onCreateView"
     }
 }

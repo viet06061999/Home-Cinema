@@ -65,6 +65,10 @@
         android:id="@+id/playTrailerFragment"
         android:name="com.sun.homecinema.ui.playtrailer.PlayTrailerFragment"
         tools:layout="@layout/fragment_play_trailer" >
+        <argument
+            android:name="movieId"
+            android:defaultValue="-1"
+            app:argType="integer" />
         <action
             android:id="@+id/actionPlayTrailerFragmentToSelf"
             app:destination="@id/playTrailerFragment" />

@@ -96,7 +96,7 @@ class DetailViewModel(
             .addTo(disposables)
     }
 
-    private fun updateFavorite() {
+     fun updateFavorite() {
         detail.value?.let { movie ->
             val movieWithActors = MovieWithActors(
                 Movie(movie),

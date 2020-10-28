@@ -89,4 +89,7 @@ dependencies {
     implementation 'androidx.room:room-rxjava2:2.2.5'
     implementation "androidx.room:room-ktx:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
+
+    //youtube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }
