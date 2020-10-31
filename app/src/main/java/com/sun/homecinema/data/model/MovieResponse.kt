@@ -13,7 +13,7 @@ data class MovieResponse(
     @SerializedName("overview")
     var description: String,
     @SerializedName("poster_path")
-    var poster: String,
+    var poster: String?,
     @SerializedName("backdrop_path")
     var background: String,
     @SerializedName("release_date")

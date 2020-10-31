@@ -13,6 +13,8 @@
     <string name="title_recommend">Recommend</string>
     <string name="title_minutes">minutes</string>
     <string name="tittle_watch_more">Watch More</string>
+    <string name="title_movie_actor">Attend the movies:</string>
+    <string name="title_biography">Biography</string>
 
     <string name="default_font" translatable="false">sans-serif-light</string>
     <string name="default_error">Đã có lỗi xảy ra!</string>

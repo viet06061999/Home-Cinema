@@ -14,7 +14,7 @@ data class Movie(
     var description: String,
     var company: String,
     var companyLogo: String?,
-    var poster: String,
+    var poster: String?,
     var background: String,
     var releaseDate: String
 ) : GeneraEntity {

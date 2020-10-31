@@ -15,7 +15,7 @@ object ApiEndPoint {
     const val GET_UPCOMING_MOVIE = "movie/upcoming"
     const val GET_DETAIL_MOVIE = "movie/{id}"
     const val GET_MOVIE_BY_GENRE =
-        "discover/movie?sort_by=popularity.desc&with_genres={id}"
+        "discover/movie?sort_by=popularity.desc"
     const val GET_VIDEO = "movie/{id}/videos"
     const val GET_RECOMMEND_MOVIE = "movie/{id}/recommendations"
     const val GET_ACTOR_OF_MOVIE = "movie/{id}/credits"
@@ -24,4 +24,5 @@ object ApiEndPoint {
     const val GET_MOVIE_OF_ACTOR = "person/{id}/movie_credits"
 
     const val PARAMS_ID = "id"
+    const val PARAMS_GENRE_ID = "with_genres"
 }

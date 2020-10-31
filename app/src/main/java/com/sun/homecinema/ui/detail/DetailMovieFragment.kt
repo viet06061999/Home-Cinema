@@ -6,6 +6,7 @@ import androidx.navigation.fragment.navArgs
 import com.sun.homecinema.R
 import com.sun.homecinema.databinding.FragmentDetailMovieBinding
 import com.sun.homecinema.base.BindingFragment
+import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.ui.adapter.ActorAdapter
 import com.sun.homecinema.ui.adapter.GenreAdapter
@@ -19,7 +20,7 @@ class DetailMovieFragment : BindingFragment<FragmentDetailMovieBinding>() {
     override val viewModel by viewModel<DetailViewModel>()
     private val args: DetailMovieFragmentArgs by navArgs()
 
-    private val actorAdapter = ActorAdapter {}
+    private val actorAdapter = ActorAdapter (::onItemActorClick)
     private val genreAdapter = GenreAdapter {}
     private val recommendAdapter =
         RecommendAdapter(::onItemMovieClick)
@@ -51,6 +52,11 @@ class DetailMovieFragment : BindingFragment<FragmentDetailMovieBinding>() {
 
     private fun onItemMovieClick(item: Movie) {
         val action = DetailMovieFragmentDirections.actionDetailToItself(item.movieId)
+        findNavController().navigate(action)
+    }
+
+    private fun onItemActorClick(item: Actor) {
+        val action = DetailMovieFragmentDirections.actionDetailToActor(item.castId)
         findNavController().navigate(action)
     }
 }

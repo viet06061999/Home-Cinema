@@ -10,6 +10,7 @@
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_128">128dp</dimen>
     <dimen name="dp_210">210dp</dimen>
+    <dimen name="dp_275">275dp</dimen>
 
     <dimen name="sp_16">16sp</dimen>
     <dimen name="sp_18">18sp</dimen>

@@ -15,16 +15,28 @@ class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
         }.map { getMovies(it) }
 
     override fun getMoviesByGenreId(id: Int): Observable<List<Movie>> =
-        remote.getMovieByGenre(id).map { getMovies(it) }
+        remote.getMovieByGenre(id).map {
+            getMovies(it).filter { movie ->
+                !movie.poster.isNullOrEmpty()
+            }
+        }
 
     override fun getDetailMovie(movieId: Int): Observable<MovieResponse> =
         remote.getDetailMovie(movieId)
 
     override fun getActors(movieId: Int): Observable<List<Actor>> =
-        remote.getActor(movieId).map { it.cast }
+        remote.getActor(movieId).map {
+            it.cast.filter { actor ->
+                !actor.avatar.isNullOrEmpty()
+            }
+        }
 
     override fun getRecommendMovies(movieId: Int): Observable<List<Movie>> =
-        remote.getRecommendMovie(movieId).map { getMovies(it) }
+        remote.getRecommendMovie(movieId).map {
+            getMovies(it).filter { movie ->
+                !movie.poster.isNullOrEmpty()
+            }
+        }
 
     override fun getVideo(movieId: Int): Observable<Video> =
         remote.getVideo(movieId).map { getTrailer(it.results) }

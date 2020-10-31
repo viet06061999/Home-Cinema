@@ -5,10 +5,12 @@ import com.sun.homecinema.data.model.MovieListResponse
 import com.sun.homecinema.data.model.MovieResponse
 import com.sun.homecinema.data.model.VideoResponse
 import com.sun.homecinema.utils.ApiEndPoint
+import com.sun.homecinema.utils.ApiEndPoint.PARAMS_GENRE_ID
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_ID
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieService {
 
@@ -22,7 +24,7 @@ interface MovieService {
     fun getUpComingMovies(): Observable<MovieListResponse>
 
     @GET(ApiEndPoint.GET_MOVIE_BY_GENRE)
-    fun getMovieByGenre(@Path(PARAMS_ID) genreId: Int): Observable<MovieListResponse>
+    fun getMovieByGenre(@Query(PARAMS_GENRE_ID) genreId: Int): Observable<MovieListResponse>
 
     @GET(ApiEndPoint.GET_DETAIL_MOVIE)
     fun getDetailMovie(@Path(PARAMS_ID) movieId: Int): Observable<MovieResponse>

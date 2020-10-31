@@ -6,14 +6,20 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "actor")
 data class Actor(
-    @SerializedName("cast_id")
+    @SerializedName("id")
     @PrimaryKey
     val castId: Int,
     var castMovieId: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("profile_path")
-    val avatar: String
+    val avatar: String?,
+    @SerializedName("birthday")
+    val birthday: String,
+    @SerializedName("place_of_birth")
+    val place: String,
+    @SerializedName("biography")
+    val biography: String
 ) : GeneraEntity {
 
     override fun areItemsTheSame(newItem: GeneraEntity): Boolean =

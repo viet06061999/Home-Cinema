@@ -21,6 +21,23 @@
         android:id="@+id/navigationMovies"
         android:name="com.sun.homecinema.ui.movies.MoviesFragment"
         tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/actionGenreToList"
+            app:destination="@id/moviesGenreList" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moviesGenreList"
+        android:name="com.sun.homecinema.ui.movies.MoviesTypeFragment"
+        tools:layout="@layout/fragment_movie_genre">
+        <argument
+            android:name="title"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/actionGenreListToDetail"
+            app:destination="@id/detailMovieFragment" />
     </fragment>
 
     <fragment
@@ -36,7 +53,7 @@
         android:id="@+id/movieTypeFragment"
         android:name="com.sun.homecinema.ui.home.MovieTypeFragment"
         android:label="fragment_movie_genre"
-        tools:layout="@layout/fragment_movie_genre">
+        tools:layout="@layout/fragment_movie_type">
         <argument
             android:name="title"
             android:defaultValue="@null"
@@ -50,21 +67,24 @@
     <fragment
         android:id="@+id/detailMovieFragment"
         android:name="com.sun.homecinema.ui.detail.DetailMovieFragment"
-        tools:layout="@layout/fragment_detail_movie" >
+        tools:layout="@layout/fragment_detail_movie">
         <argument
             android:name="movieId"
             app:argType="integer" />
         <action
             android:id="@+id/actionDetailToItself"
-            app:destination="@+id/detailMovieFragment"/>
+            app:destination="@+id/detailMovieFragment" />
         <action
             android:id="@+id/actioDetailToTrailer"
             app:destination="@id/playTrailerFragment" />
+        <action
+            android:id="@+id/actionDetailToActor"
+            app:destination="@id/detailActorFragment" />
     </fragment>
     <fragment
         android:id="@+id/playTrailerFragment"
         android:name="com.sun.homecinema.ui.playtrailer.PlayTrailerFragment"
-        tools:layout="@layout/fragment_play_trailer" >
+        tools:layout="@layout/fragment_play_trailer">
         <argument
             android:name="movieId"
             android:defaultValue="-1"
@@ -72,5 +92,16 @@
         <action
             android:id="@+id/actionPlayTrailerFragmentToSelf"
             app:destination="@id/playTrailerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailActorFragment"
+        android:name="com.sun.homecinema.ui.detailactor.DetailActorFragment"
+        tools:layout="@layout/fragment_detail_actor">
+        <argument
+            android:name="actorId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/actionActorToDetailMovie"
+            app:destination="@id/detailMovieFragment" />
     </fragment>
 </navigation>

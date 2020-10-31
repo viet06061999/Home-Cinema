@@ -47,7 +47,8 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _detail.value = it },
-                { error.value = it.message }
+                { error.value = it.message
+                    it.printStackTrace()}
             )
             .addTo(disposables)
     }
@@ -58,7 +59,8 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _actors.value = it },
-                { error.value = it.message }
+                { error.value = it.message
+                    it.printStackTrace()}
             )
             .addTo(disposables)
     }
@@ -69,7 +71,8 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _isFavorite.value = it },
-                { error.value = it.message }
+                { error.value = it.message
+                    it.printStackTrace()}
             )
             .addTo(disposables)
     }
@@ -80,7 +83,8 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _recommends.value = it },
-                { error.value = it.message }
+                { error.value = it.message
+                    it.printStackTrace()}
             )
             .addTo(disposables)
     }
@@ -91,12 +95,13 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _video.value = it },
-                { error.value = it.message }
+                { error.value = it.message
+                    it.printStackTrace()}
             )
             .addTo(disposables)
     }
 
-     fun updateFavorite() {
+    fun updateFavorite() {
         detail.value?.let { movie ->
             val movieWithActors = MovieWithActors(
                 Movie(movie),
