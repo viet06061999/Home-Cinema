@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="search"
+            type="com.sun.homecinema.data.model.SearchResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_20">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            image="@{search.poster == null? search.profile : search.poster }"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_64"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="@dimen/dp_1" />
+
+        <TextView
+            android:id="@+id/textNameMovie"
+            style="@style/TextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:gravity="center"
+            android:text="@{search.title == null? search.name : search.title}"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/textType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:gravity="center"
+            android:text="@{search.mediaType}"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/textNameMovie" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

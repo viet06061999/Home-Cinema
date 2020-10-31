@@ -7,9 +7,12 @@ import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.databinding.ItemPopularBinding
 import com.sun.homecinema.utils.setWith
 import com.sun.homecinema.base.BaseViewHolder
+import com.sun.homecinema.utils.setHeight
 
-class PopularAdapter(private val listener: (Movie) -> Unit) :
-    BaseAdapter<Movie, ItemPopularBinding>(listener) {
+class PopularAdapter(
+    private val listener: (Movie) -> Unit,
+    loadMore: () -> Unit
+) : BaseAdapter<Movie, ItemPopularBinding>(listener, loadMore) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,6 +33,7 @@ class PopularAdapter(private val listener: (Movie) -> Unit) :
     ) : BaseViewHolder<Movie, ItemPopularBinding>(itemPopularBinding, listener) {
         override fun onBind(itemData: Movie) {
             super.onBind(itemData)
+            itemPopularBinding.imagePopular.setHeight(0.15f)
             itemPopularBinding.movie = itemData
         }
     }

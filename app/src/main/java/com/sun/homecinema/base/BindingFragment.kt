@@ -1,5 +1,6 @@
 package com.sun.homecinema.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.sun.homecinema.R
 import com.sun.homecinema.utils.showToast
-import java.lang.IllegalStateException
 
 abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
     @LayoutRes
@@ -23,6 +23,13 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
 
     protected val binding: T
         get() = _binding ?: throw IllegalStateException(EXCEPTION)
+
+    private var navigationListener: BottomNavigationListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is BottomNavigationListener) navigationListener = context
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +56,10 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
     fun showToast(msg: String) = requireContext().showToast(msg)
 
     abstract fun setupView()
+
+    open fun onBackPress() {
+        navigationListener?.showNav()
+    }
 
     companion object {
         private const val EXCEPTION = "Binding only is valid after onCreateView"

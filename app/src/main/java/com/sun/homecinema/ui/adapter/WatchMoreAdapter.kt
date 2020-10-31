@@ -9,7 +9,7 @@ import com.sun.homecinema.databinding.ItemWatchMoreBinding
 import com.sun.homecinema.utils.setHeight
 
 class WatchMoreAdapter(private val listener: (Movie) -> Unit) :
-    BaseAdapter<Movie, ItemWatchMoreBinding>(listener) {
+    BaseAdapter<Movie, ItemWatchMoreBinding>(listener,{}) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

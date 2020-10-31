@@ -1,6 +1,9 @@
 package com.sun.homecinema.ui.detail
 
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sun.homecinema.R
@@ -11,6 +14,7 @@ import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.ui.adapter.ActorAdapter
 import com.sun.homecinema.ui.adapter.GenreAdapter
 import com.sun.homecinema.ui.adapter.RecommendAdapter
+import com.sun.homecinema.utils.showAndHide
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailMovieFragment : BindingFragment<FragmentDetailMovieBinding>() {
@@ -43,10 +47,17 @@ class DetailMovieFragment : BindingFragment<FragmentDetailMovieBinding>() {
         binding.toolbarDetail.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+        binding.imageButtonFavorite.setOnClickListener {
+            viewModel.updateFavorite()
+        }
         binding.imageButtonPlay.setOnClickListener {
-            val action =
-                DetailMovieFragmentDirections.actioDetailToTrailer(viewModel.detail.value?.id ?: -1)
-            findNavController().navigate(action)
+            if(viewModel.video.value != null){
+                val action =
+                    DetailMovieFragmentDirections.actioDetailToTrailer(viewModel.detail.value?.id ?: -1)
+                findNavController().navigate(action)
+            }else{
+             showToast("The movie Don't have trailer")
+            }
         }
     }
 

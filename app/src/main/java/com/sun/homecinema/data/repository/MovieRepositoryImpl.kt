@@ -7,15 +7,15 @@ import io.reactivex.Observable
 class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
     MovieRepository {
 
-    override fun getMoviesByType(type: MovieType): Observable<List<Movie>> =
+    override fun getMoviesByType(type: MovieType, page: Int?): Observable<List<Movie>> =
         when (type) {
-            MovieType.Popular -> remote.getPopularMovies()
-            MovieType.TopRate -> remote.getTopRateMovies()
-            MovieType.Upcoming -> remote.getUpComingMovies()
+            MovieType.Popular -> remote.getPopularMovies(page)
+            MovieType.TopRate -> remote.getTopRateMovies(page)
+            MovieType.Upcoming -> remote.getUpComingMovies(page)
         }.map { getMovies(it) }
 
-    override fun getMoviesByGenreId(id: Int): Observable<List<Movie>> =
-        remote.getMovieByGenre(id).map {
+    override fun getMoviesByGenreId(id: Int, page: Int?): Observable<List<Movie>> =
+        remote.getMovieByGenre(id, page).map {
             getMovies(it).filter { movie ->
                 !movie.poster.isNullOrEmpty()
             }
@@ -40,6 +40,13 @@ class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
 
     override fun getVideo(movieId: Int): Observable<Video> =
         remote.getVideo(movieId).map { getTrailer(it.results) }
+
+    override fun search(param: String): Observable<List<SearchResponse>> =
+        remote.search(param).map {
+            it.response.filter { item ->
+                item.mediaType == SearchResponse.MOVIE || item.mediaType == SearchResponse.PERSON
+            }
+        }
 
     private fun getTrailer(videos: List<Video?>): Video =
         videos.first {

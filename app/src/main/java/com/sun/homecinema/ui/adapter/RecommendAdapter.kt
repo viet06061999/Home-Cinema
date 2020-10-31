@@ -10,7 +10,7 @@ import com.sun.homecinema.utils.hide
 import com.sun.homecinema.utils.setHeight
 
 class RecommendAdapter(private val listener: (Movie) -> Unit) :
-    BaseAdapter<Movie, ItemMoviePosterBinding>(listener) {
+    BaseAdapter<Movie, ItemMoviePosterBinding>(listener,{}) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

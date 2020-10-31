@@ -15,6 +15,9 @@
         <action
             android:id="@+id/actionHomeToDetail"
             app:destination="@id/detailMovieFragment" />
+        <action
+            android:id="@+id/actionHomeToSearch"
+            app:destination="@id/searchFragment" />
     </fragment>
 
     <fragment
@@ -103,5 +106,18 @@
         <action
             android:id="@+id/actionActorToDetailMovie"
             app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sun.homecinema.ui.search.SearchFragment"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/actionSearchToMovie"
+            app:destination="@id/detailMovieFragment" />
+        <action
+            android:id="@+id/actionSearchToActor"
+            app:destination="@id/detailActorFragment" />
     </fragment>
 </navigation>

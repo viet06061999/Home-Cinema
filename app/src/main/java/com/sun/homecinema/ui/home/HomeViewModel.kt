@@ -13,15 +13,18 @@ import io.reactivex.schedulers.Schedulers
 class HomeViewModel(
     private val movieRepository: MovieRepository
 ) : RxViewModel() {
+    private var currentPagePopular = 0
+    private var currentPageUpComming = 0
+    private var currentPageTopRate = 0
 
-    private val _popularMovies = MutableLiveData<List<Movie>>()
-    val popularMovies: LiveData<List<Movie>>
+    private val _popularMovies = MutableLiveData<MutableList<Movie>>()
+    val popularMovies: LiveData<MutableList<Movie>>
         get() = _popularMovies
-    private val _upcomingMovies = MutableLiveData<List<Movie>>()
-    val upcomingMovies: LiveData<List<Movie>>
+    private val _upcomingMovies = MutableLiveData<MutableList<Movie>>()
+    val upcomingMovies: LiveData<MutableList<Movie>>
         get() = _upcomingMovies
-    private val _topRateMovies = MutableLiveData<List<Movie>>()
-    val topRateMovies: LiveData<List<Movie>>
+    private val _topRateMovies = MutableLiveData<MutableList<Movie>>()
+    val topRateMovies: LiveData<MutableList<Movie>>
         get() = _topRateMovies
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
@@ -33,23 +36,27 @@ class HomeViewModel(
         getTopRate()
     }
 
-    private fun getPopular() {
-        movieRepository.getMoviesByType(MovieType.Popular)
+    fun getPopular() {
+        movieRepository.getMoviesByType(MovieType.Popular, ++currentPagePopular)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { _popularMovies.value = it },
+                {
+                    if (currentPagePopular == 1) _popularMovies.value = it as MutableList<Movie>?
+                    else _popularMovies.value?.addAll(it)
+                },
                 { error.value = it.message }
             )
             .addTo(disposables)
     }
 
-    private fun getUpcoming() {
-        movieRepository.getMoviesByType(MovieType.Upcoming)
+     fun getUpcoming() {
+        movieRepository.getMoviesByType(MovieType.Upcoming, ++currentPageUpComming)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { _upcomingMovies.value = it },
+                { if (currentPageUpComming == 1) _upcomingMovies.value = it as MutableList<Movie>?
+                else _upcomingMovies.value?.addAll(it) },
                 { error.value = it.message }
             )
             .addTo(disposables)
@@ -63,12 +70,13 @@ class HomeViewModel(
         }
     }
 
-    private fun getTopRate() {
-        movieRepository.getMoviesByType(MovieType.TopRate)
+     fun getTopRate() {
+        movieRepository.getMoviesByType(MovieType.TopRate, ++currentPageTopRate)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { _topRateMovies.value = it },
+                {  if (currentPageTopRate == 1) _topRateMovies.value = it as MutableList<Movie>?
+                else _topRateMovies.value?.addAll(it) },
                 { error.value = it.message }
             )
             .addTo(disposables)

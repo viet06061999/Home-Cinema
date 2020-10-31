@@ -1,9 +1,6 @@
 package com.sun.homecinema.data.source.remote.utils
 
-import com.sun.homecinema.data.model.ActorResponse
-import com.sun.homecinema.data.model.MovieListResponse
-import com.sun.homecinema.data.model.MovieResponse
-import com.sun.homecinema.data.model.VideoResponse
+import com.sun.homecinema.data.model.*
 import com.sun.homecinema.utils.ApiEndPoint
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_GENRE_ID
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_ID
@@ -15,16 +12,19 @@ import retrofit2.http.Query
 interface MovieService {
 
     @GET(ApiEndPoint.GET_POPULAR_MOVIE)
-    fun getPopularMovies(): Observable<MovieListResponse>
+    fun getPopularMovies(@Query("page") page: Int? = null): Observable<MovieListResponse>
 
     @GET(ApiEndPoint.GET_TOP_RATE_MOVIE)
-    fun getTopRateMovies(): Observable<MovieListResponse>
+    fun getTopRateMovies(@Query("page") page: Int? = null): Observable<MovieListResponse>
 
     @GET(ApiEndPoint.GET_UPCOMING_MOVIE)
-    fun getUpComingMovies(): Observable<MovieListResponse>
+    fun getUpComingMovies(@Query("page") page: Int? = null): Observable<MovieListResponse>
 
     @GET(ApiEndPoint.GET_MOVIE_BY_GENRE)
-    fun getMovieByGenre(@Query(PARAMS_GENRE_ID) genreId: Int): Observable<MovieListResponse>
+    fun getMovieByGenre(
+        @Query(PARAMS_GENRE_ID) genreId: Int,
+        @Query("page") page: Int? = null
+    ): Observable<MovieListResponse>
 
     @GET(ApiEndPoint.GET_DETAIL_MOVIE)
     fun getDetailMovie(@Path(PARAMS_ID) movieId: Int): Observable<MovieResponse>
@@ -37,4 +37,7 @@ interface MovieService {
 
     @GET(ApiEndPoint.GET_VIDEO)
     fun getVideo(@Path(PARAMS_ID) movieId: Int): Observable<VideoResponse>
+
+    @GET(ApiEndPoint.SEARCH_MUlTI)
+    fun search(@Query("query") query: String): Observable<ListSearch>
 }

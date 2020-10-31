@@ -16,9 +16,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(), View.OnClickListene
 
     override val viewModel by sharedViewModel<HomeViewModel>()
 
-    private val popularAdapter = PopularAdapter(::onItemClick)
-    private val upcomingAdapter = UpcomingAdapter(::onItemClick)
-    private val topRateAdapter = MovieAdapter(::onItemClick)
+    private val popularAdapter = PopularAdapter(::onItemClick) {
+        viewModel.getPopular()
+    }
+    private val upcomingAdapter = UpcomingAdapter(::onItemClick) {
+        viewModel.getUpcoming()
+    }
+    private val topRateAdapter = MovieAdapter(::onItemClick) {
+        viewModel.getTopRate()
+    }
 
     override fun getLayoutResId() = R.layout.fragment_home
 
@@ -58,6 +64,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(), View.OnClickListene
         binding.textSeeAllTopRate.setOnClickListener(this)
 
         binding.textSeeAllUpcoming.setOnClickListener(this)
+
+        binding.imageButtonSearch.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeToSearch()
+            findNavController().navigate(action)
+        }
     }
 
     private fun onItemClick(item: Movie) {

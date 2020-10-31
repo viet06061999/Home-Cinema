@@ -23,6 +23,8 @@ object ApiEndPoint {
     const val GET_DETAIL_ACTOR = "person/{id}"
     const val GET_MOVIE_OF_ACTOR = "person/{id}/movie_credits"
 
+    const val SEARCH_MUlTI ="search/multi"
+
     const val PARAMS_ID = "id"
     const val PARAMS_GENRE_ID = "with_genres"
 }

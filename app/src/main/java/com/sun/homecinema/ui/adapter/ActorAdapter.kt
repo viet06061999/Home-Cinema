@@ -8,7 +8,7 @@ import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.databinding.ItemActorBinding
 
 class ActorAdapter(private val listener: (Actor) -> Unit) :
-    BaseAdapter<Actor, ItemActorBinding>(listener) {
+    BaseAdapter<Actor, ItemActorBinding>(listener,{}) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

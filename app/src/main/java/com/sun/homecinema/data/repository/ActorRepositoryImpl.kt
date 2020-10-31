@@ -10,8 +10,12 @@ class ActorRepositoryImpl(private val remote: ActorDataSource.Remote) :
 
     override fun getMoviesOfActor(actorId: Int): Observable<List<Movie>> =
         remote.getMovieOfActor(actorId).map {
-            it.movies.map { response ->
-                Movie(response)
+            it.movies.mapNotNull { response ->
+                try {
+                    Movie(response)
+                } catch (exception: IllegalArgumentException) {
+                    null
+                }
             }
         }
 

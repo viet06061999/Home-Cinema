@@ -1,9 +1,6 @@
 package com.sun.homecinema.data.source.remote
 
-import com.sun.homecinema.data.model.ActorResponse
-import com.sun.homecinema.data.model.MovieListResponse
-import com.sun.homecinema.data.model.MovieResponse
-import com.sun.homecinema.data.model.VideoResponse
+import com.sun.homecinema.data.model.*
 import com.sun.homecinema.data.source.MovieDataSource
 import com.sun.homecinema.data.source.remote.utils.MovieService
 import io.reactivex.Observable
@@ -11,17 +8,17 @@ import io.reactivex.Observable
 class MovieRemoteDataSource(private val movieService: MovieService) :
     MovieDataSource.Remote {
 
-    override fun getPopularMovies(): Observable<MovieListResponse> =
-        movieService.getPopularMovies()
+    override fun getPopularMovies(page: Int?): Observable<MovieListResponse> =
+        movieService.getPopularMovies(page)
 
-    override fun getTopRateMovies(): Observable<MovieListResponse> =
-        movieService.getTopRateMovies()
+    override fun getTopRateMovies(page: Int?): Observable<MovieListResponse> =
+        movieService.getTopRateMovies(page)
 
-    override fun getUpComingMovies(): Observable<MovieListResponse> =
-        movieService.getUpComingMovies()
+    override fun getUpComingMovies(page: Int?): Observable<MovieListResponse> =
+        movieService.getUpComingMovies(page)
 
-    override fun getMovieByGenre(genreId: Int): Observable<MovieListResponse> =
-        movieService.getMovieByGenre(genreId)
+    override fun getMovieByGenre(genreId: Int, page: Int?): Observable<MovieListResponse> =
+        movieService.getMovieByGenre(genreId, page)
 
     override fun getDetailMovie(movieId: Int): Observable<MovieResponse> =
         movieService.getDetailMovie(movieId)
@@ -34,4 +31,7 @@ class MovieRemoteDataSource(private val movieService: MovieService) :
 
     override fun getVideo(movieId: Int): Observable<VideoResponse> =
         movieService.getVideo(movieId)
+
+    override fun search(param: String): Observable<ListSearch> =
+        movieService.search(param)
 }

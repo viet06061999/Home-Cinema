@@ -8,7 +8,7 @@ import com.sun.homecinema.data.model.GenreResponse
 import com.sun.homecinema.databinding.ItemGenreBinding
 
 class GenreAdapter(private val listener: (GenreResponse) -> Unit) :
-    BaseAdapter<GenreResponse, ItemGenreBinding>(listener) {
+    BaseAdapter<GenreResponse, ItemGenreBinding>(listener,{}) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

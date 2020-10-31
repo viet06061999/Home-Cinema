@@ -46,7 +46,7 @@ class DetailActorFragment : BindingFragment<FragmentDetailActorBinding>() {
     }
 
     private fun onItemMovieClick(item: Movie) {
-        val action = DetailMovieFragmentDirections.actionDetailToItself(item.movieId)
+        val action = DetailActorFragmentDirections.actionActorToDetailMovie(item.movieId)
         findNavController().navigate(action)
     }
 }
