@@ -35,7 +35,7 @@
                     android:layout_height="0dp"
                     android:layout_marginBottom="@dimen/dp_8"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -55,7 +55,6 @@
 
                 <TextView
                     android:id="@+id/textBirthday"
-                    style="@style/TextTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_8"

@@ -23,7 +23,7 @@
             android:adjustViewBounds="true"
             android:background="@null"
             android:maxWidth="@dimen/dp_128"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

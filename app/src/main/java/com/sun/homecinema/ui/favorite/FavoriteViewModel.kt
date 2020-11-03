@@ -16,6 +16,8 @@ class FavoriteViewModel(
 ) : RxViewModel() {
 
     private val _favorite = MutableLiveData<List<MovieWithActors>>()
+    val favorite: LiveData<List<MovieWithActors>>
+        get() = _favorite
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
@@ -38,6 +40,17 @@ class FavoriteViewModel(
                     _favorite.value = it
                     _movies.value = it.map { favorite -> favorite.movie }
                 },
+                { error.value = it.message }
+            )
+            .addTo(disposables)
+    }
+
+    fun deleteFavorite(movieWithActors: MovieWithActors) {
+        favoriteRepository.deleteFavorite(movieWithActors)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {},
                 { error.value = it.message }
             )
             .addTo(disposables)

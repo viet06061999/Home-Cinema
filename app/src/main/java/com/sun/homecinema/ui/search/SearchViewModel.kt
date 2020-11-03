@@ -22,9 +22,8 @@ class SearchViewModel(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { _search.value = it
-                    println(it)},
-                {it.printStackTrace()}
+                { _search.value = it },
+                {}
             )
             .addTo(disposables)
     }

@@ -19,11 +19,11 @@
 
     <style name="TextTitle">
         <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
         <item name="android:drawablePadding">@dimen/dp_8</item>
         <item name="android:singleLine">true</item>
     </style>
-
 </resources>

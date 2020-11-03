@@ -29,27 +29,21 @@ class DetailActorViewModel(private val actorRepository: ActorRepository) : RxVie
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _detail.value = it },
-                {
-                    error.value = it.message
-                    it.printStackTrace()
-                }
+                { error.value = it.message }
             )
             .addTo(disposables)
     }
 
     private fun getMovies(actorId: Int) {
-        println(actorId)
         actorRepository.getMoviesOfActor(actorId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
                     _movies.value = it
-                    println(it)
                 },
                 {
                     error.value = it.message
-                    it.printStackTrace()
                 }
             )
             .addTo(disposables)

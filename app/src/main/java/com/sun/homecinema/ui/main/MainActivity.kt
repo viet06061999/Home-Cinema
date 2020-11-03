@@ -1,6 +1,7 @@
 package com.sun.homecinema.ui.main
 
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -35,6 +36,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationListener {
     override fun onBackPressed() {
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
         navController.popBackStack()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return super.onTouchEvent(event)
     }
 
     private fun setupViews() {

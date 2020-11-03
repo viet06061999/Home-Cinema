@@ -47,8 +47,9 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _detail.value = it },
-                { error.value = it.message
-                    it.printStackTrace()}
+                {
+                    error.value = it.message
+                }
             )
             .addTo(disposables)
     }
@@ -59,8 +60,9 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _actors.value = it },
-                { error.value = it.message
-                    it.printStackTrace()}
+                {
+                    error.value = it.message
+                }
             )
             .addTo(disposables)
     }
@@ -71,8 +73,9 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _isFavorite.value = it },
-                { error.value = it.message
-                    it.printStackTrace()}
+                {
+                    error.value = it.message
+                }
             )
             .addTo(disposables)
     }
@@ -83,8 +86,9 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _recommends.value = it },
-                { error.value = it.message
-                    it.printStackTrace()}
+                {
+                    error.value = it.message
+                }
             )
             .addTo(disposables)
     }
@@ -95,8 +99,7 @@ class DetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { _video.value = it },
-                { error.value = it.message
-                    it.printStackTrace()}
+                { error.value = it.message }
             )
             .addTo(disposables)
     }
@@ -104,7 +107,7 @@ class DetailViewModel(
     fun updateFavorite() {
         detail.value?.let { movie ->
             val movieWithActors = MovieWithActors(
-                Movie(movie),
+                Movie(movie).apply { genre = movie.genre?.get(0)?.name ?: "Action" },
                 actors.value ?: listOf()
             )
             if (isFavorite.value == true) {

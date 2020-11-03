@@ -47,7 +47,7 @@ class DetailMovieFragment : BindingFragment<FragmentDetailMovieBinding>() {
         binding.toolbarDetail.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-        binding.imageButtonFavorite.setOnClickListener {
+        binding.buttonFavorite.setOnClickListener {
             viewModel.updateFavorite()
         }
         binding.imageButtonPlay.setOnClickListener {

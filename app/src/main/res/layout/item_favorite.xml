@@ -6,7 +6,7 @@
 
         <variable
             name="movie"
-            type="com.sun.homecinema.data.model.Movie" />
+            type="com.sun.homecinema.data.model.MovieWithActors" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageMovie"
-            image="@{movie.poster}"
+            image="@{movie.movie.poster}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
-            android:text="@{movie.title}"
+            android:text="@{movie.movie.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageMovie"
             app:layout_constraintTop_toTopOf="@+id/imageMovie" />
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:drawablePadding="@dimen/dp_5"
-            android:text="@{String.valueOf(movie.rate)}"
+            android:text="@{String.valueOf(movie.movie.rate)}"
             app:drawableStartCompat="@drawable/ic_star"
             app:layout_constraintBottom_toBottomOf="@+id/textGenre"
             app:layout_constraintHorizontal_bias="0.1"
@@ -67,7 +67,7 @@
             android:layout_marginTop="@dimen/dp_8"
             android:background="@drawable/text_border"
             android:padding="@dimen/dp_5"
-            android:text="@{movie.genre}"
+            android:text="@{movie.movie.genre}"
             app:layout_constraintStart_toStartOf="@+id/textNameMovie"
             app:layout_constraintTop_toBottomOf="@id/textNameMovie" />
 
@@ -78,10 +78,22 @@
             android:layout_marginVertical="@dimen/dp_8"
             android:ellipsize="end"
             android:maxLines="4"
-            android:text="@{movie.description}"
+            android:text="@{movie.movie.description}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textGenre"
             app:layout_constraintTop_toBottomOf="@id/textGenre" />
+
+        <TextView
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_border"
+            android:padding="@dimen/dp_8"
+            android:text="@string/title_delete"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="@+id/imageMovie"
+            app:layout_constraintStart_toStartOf="@id/textDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,7 +10,14 @@ data class MovieWithActors(
         entityColumn = COLUMN_ENTITY
     )
     val actors: List<Actor>
-) {
+) : GeneraEntity {
+
+    override fun areItemsTheSame(newItem: GeneraEntity): Boolean =
+        newItem is MovieWithActors && this.movie.movieId == newItem.movie.movieId
+
+    override fun areContentsTheSame(newItem: GeneraEntity): Boolean =
+        newItem is MovieWithActors && this == newItem
+
     companion object{
         const val COLUMN_PARENT = "movieId"
         const val COLUMN_ENTITY = "castMovieId"

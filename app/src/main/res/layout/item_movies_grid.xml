@@ -22,7 +22,7 @@
             android:layout_marginBottom="@dimen/dp_8"
             android:adjustViewBounds="true"
             android:minWidth="@dimen/dp_128"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/textNameMovie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

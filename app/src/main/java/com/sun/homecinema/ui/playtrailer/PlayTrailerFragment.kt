@@ -54,9 +54,6 @@ class PlayTrailerFragment : BindingFragment<FragmentPlayTrailerBinding>() {
         binding.toolbarDetail.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-        binding.imageButtonFavorite.setOnClickListener {
-            viewModel.updateFavorite()
-        }
     }
 
     private fun observer() {

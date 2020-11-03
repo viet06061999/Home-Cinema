@@ -6,4 +6,5 @@
     <color name="color_shank">#242426</color>
     <color name="color_grandis">#FFD185</color>
     <color name="color_woodsmoke">#101012</color>
+    <color name="color_trans">#00000000</color>
 </resources>
