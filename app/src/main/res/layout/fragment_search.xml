@@ -44,6 +44,7 @@
                     android:layout_gravity="end"
                     app:closeIcon="@drawable/ic_clear"
                     app:iconifiedByDefault="false"
+                    android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageBack"
                     app:layout_constraintTop_toTopOf="parent"

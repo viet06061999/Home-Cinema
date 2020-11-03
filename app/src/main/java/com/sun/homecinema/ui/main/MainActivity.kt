@@ -1,14 +1,9 @@
 package com.sun.homecinema.ui.main
 
 import android.os.Bundle
-import android.util.Log
-import android.view.GestureDetector
-import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GestureDetectorCompat
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.sun.homecinema.R
 import com.sun.homecinema.base.BottomNavigationListener
@@ -38,7 +33,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationListener {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
         navController.popBackStack()
     }

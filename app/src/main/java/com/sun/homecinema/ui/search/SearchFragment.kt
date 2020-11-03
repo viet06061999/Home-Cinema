@@ -1,16 +1,12 @@
 package com.sun.homecinema.ui.search
 
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.navigation.fragment.findNavController
 import com.sun.homecinema.R
 import com.sun.homecinema.base.BindingFragment
-import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.data.model.SearchResponse
 import com.sun.homecinema.databinding.FragmentSearchBinding
 import com.sun.homecinema.ui.adapter.SearchAdapter
-import com.sun.homecinema.ui.adapter.WatchMoreAdapter
-import com.sun.homecinema.ui.favorite.FavoriteFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : BindingFragment<FragmentSearchBinding>() {
@@ -22,6 +18,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>() {
 
     override fun setupView() {
         initListener()
+        binding.searchView.requestFocus()
         binding.apply {
             lifecycleOwner = this@SearchFragment
             searchVM = viewModel

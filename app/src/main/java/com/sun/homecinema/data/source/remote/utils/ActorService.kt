@@ -1,9 +1,7 @@
 package com.sun.homecinema.data.source.remote.utils
 
 import com.sun.homecinema.data.model.Actor
-import com.sun.homecinema.data.model.ActorResponse
 import com.sun.homecinema.data.model.MovieActorResponse
-import com.sun.homecinema.data.model.MovieListResponse
 import com.sun.homecinema.utils.ApiEndPoint
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_ID
 import io.reactivex.Observable

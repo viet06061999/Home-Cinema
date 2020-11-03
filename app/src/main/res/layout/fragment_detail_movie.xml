@@ -63,6 +63,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp_8"
                     android:layout_marginTop="@dimen/dp_8"
+                    android:ellipsize="end"
+                    android:maxLines="2"
                     android:text="@{detailViewModel.detail.title}"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
@@ -92,6 +94,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/imageViewPoster"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/imageViewPoster" />
+
                 <ImageButton
                     android:id="@+id/imageButtonFavorite"
                     android:layout_width="wrap_content"
