@@ -2,16 +2,18 @@ package com.sun.homecinema.ui.search
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.fragment.findNavController
+import com.jakewharton.rxbinding4.widget.queryTextChanges
 import com.sun.homecinema.R
 import com.sun.homecinema.base.BindingFragment
 import com.sun.homecinema.data.model.SearchResponse
 import com.sun.homecinema.databinding.FragmentSearchBinding
 import com.sun.homecinema.ui.adapter.SearchAdapter
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class SearchFragment : BindingFragment<FragmentSearchBinding>() {
 
@@ -20,8 +22,9 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>() {
     override val viewModel by viewModel<SearchViewModel>()
     private val searchAdapter = SearchAdapter(::onItemSearchClick)
 
+    private var disposeable: Disposable? = null
+
     override fun setupView() {
-        initListener()
         binding.searchView.requestFocus()
         val imm: InputMethodManager? =
             activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -31,6 +34,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>() {
             searchVM = viewModel
             recyclerViewSearch.adapter = searchAdapter
         }
+        initListener()
     }
 
     private fun onItemSearchClick(item: SearchResponse) {
@@ -47,19 +51,26 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>() {
         binding.imageBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                val imm: InputMethodManager? =
-                    activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-                return true
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let { viewModel.search(it) }
-                return true
+       searchView.queryTextChanges()
+            .skipInitialValue()
+//            .debounce(2, TimeUnit.SECONDS)
+            .map {
+                println(it.toString())
+                it.toString()
             }
-        })
+            .switchMap { query ->
+                viewModel.search(query)
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    println(it.size)
+                    viewModel.setValueSearch(it)
+                },
+                {}
+            )
     }
 
     override fun onPause() {

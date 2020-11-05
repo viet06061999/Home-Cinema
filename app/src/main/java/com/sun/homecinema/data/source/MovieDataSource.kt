@@ -23,6 +23,6 @@ interface MovieDataSource {
 
         fun getVideo(movieId: Int): Observable<VideoResponse>
 
-        fun search(param: String): Observable<ListSearch>
+        fun search(param: String): io.reactivex.rxjava3.core.Observable<ListSearch>
     }
 }

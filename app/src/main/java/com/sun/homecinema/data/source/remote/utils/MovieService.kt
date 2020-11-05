@@ -39,5 +39,5 @@ interface MovieService {
     fun getVideo(@Path(PARAMS_ID) movieId: Int): Observable<VideoResponse>
 
     @GET(ApiEndPoint.SEARCH_MUlTI)
-    fun search(@Query("query") query: String): Observable<ListSearch>
+    fun search(@Query("query") query: String): io.reactivex.rxjava3.core.Observable<ListSearch>
 }

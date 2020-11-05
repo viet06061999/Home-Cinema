@@ -32,6 +32,6 @@ class MovieRemoteDataSource(private val movieService: MovieService) :
     override fun getVideo(movieId: Int): Observable<VideoResponse> =
         movieService.getVideo(movieId)
 
-    override fun search(param: String): Observable<ListSearch> =
+    override fun search(param: String): io.reactivex.rxjava3.core.Observable<ListSearch> =
         movieService.search(param)
 }

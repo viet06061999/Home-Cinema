@@ -18,6 +18,7 @@
     <string name="filterHint">Search Movie and Actor</string>
     <string name="title_add_favorite">Add TO Favorite</string>
     <string name="title_delete">DELETE</string>
+    <string name="title_delete_favorite">Delete Favorite</string>
 
     <string name="default_font" translatable="false">sans-serif-light</string>
     <string name="default_error">Error…!</string>
