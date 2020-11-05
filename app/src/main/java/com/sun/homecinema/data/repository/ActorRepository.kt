@@ -2,7 +2,7 @@ package com.sun.homecinema.data.repository
 
 import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.Movie
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 interface ActorRepository {
 

@@ -4,7 +4,7 @@ import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.MovieActorResponse
 import com.sun.homecinema.data.source.ActorDataSource
 import com.sun.homecinema.data.source.remote.utils.ActorService
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 class ActorRemoteDataSource(private val actorService: ActorService) :
     ActorDataSource.Remote {

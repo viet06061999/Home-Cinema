@@ -1,7 +1,7 @@
 package com.sun.homecinema.data.source
 
 import com.sun.homecinema.data.model.*
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 interface MovieDataSource {
 
@@ -23,6 +23,6 @@ interface MovieDataSource {
 
         fun getVideo(movieId: Int): Observable<VideoResponse>
 
-        fun search(param: String): Observable<ListSearch>
+        fun search(param: String): io.reactivex.rxjava3.core.Observable<ListSearch>
     }
 }

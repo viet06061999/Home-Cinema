@@ -4,9 +4,9 @@ import androidx.room.*
 import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.data.model.MovieWithActors
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 @Dao
 interface MovieDao {

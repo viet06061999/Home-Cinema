@@ -45,7 +45,7 @@
             data="@{genreVM.movies}"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginVertical="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_16"
             android:fitsSystemWindows="true"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

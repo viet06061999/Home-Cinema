@@ -3,7 +3,7 @@ package com.sun.homecinema.data.repository
 import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.Movie
 import com.sun.homecinema.data.source.ActorDataSource
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 class ActorRepositoryImpl(private val remote: ActorDataSource.Remote) :
     ActorRepository {

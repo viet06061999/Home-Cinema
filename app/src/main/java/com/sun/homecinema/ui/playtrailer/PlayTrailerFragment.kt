@@ -30,7 +30,10 @@ class PlayTrailerFragment : BindingFragment<FragmentPlayTrailerBinding>() {
     private var navigationListener: BottomNavigationListener? = null
 
     private val args: PlayTrailerFragmentArgs by navArgs()
+
     private val watchMoreAdapter = WatchMoreAdapter(::onItemMovieClick)
+
+    private var youtube: YouTubePlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +75,7 @@ class PlayTrailerFragment : BindingFragment<FragmentPlayTrailerBinding>() {
         youtubeView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
                 youTubePlayer.loadVideo(youtubeId, 0f)
+                youtube = youTubePlayer
             }
         })
         youtubeView.addFullScreenListener(object : YouTubePlayerFullScreenListener {
@@ -87,5 +91,15 @@ class PlayTrailerFragment : BindingFragment<FragmentPlayTrailerBinding>() {
                 navigationListener?.showNav()
             }
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        youtube?.pause()
+    }
+
+    override fun onDestroy() {
+        binding.youtubeView.release()
+        super.onDestroy()
     }
 }

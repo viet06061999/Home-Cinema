@@ -4,7 +4,7 @@ import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.MovieActorResponse
 import com.sun.homecinema.utils.ApiEndPoint
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_ID
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 

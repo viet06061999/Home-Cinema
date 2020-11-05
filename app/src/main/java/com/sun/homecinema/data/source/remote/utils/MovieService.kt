@@ -4,7 +4,7 @@ import com.sun.homecinema.data.model.*
 import com.sun.homecinema.utils.ApiEndPoint
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_GENRE_ID
 import com.sun.homecinema.utils.ApiEndPoint.PARAMS_ID
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -39,5 +39,5 @@ interface MovieService {
     fun getVideo(@Path(PARAMS_ID) movieId: Int): Observable<VideoResponse>
 
     @GET(ApiEndPoint.SEARCH_MUlTI)
-    fun search(@Query("query") query: String): Observable<ListSearch>
+    fun search(@Query("query") query: String): io.reactivex.rxjava3.core.Observable<ListSearch>
 }

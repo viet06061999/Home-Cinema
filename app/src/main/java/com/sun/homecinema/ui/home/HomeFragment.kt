@@ -1,5 +1,6 @@
 package com.sun.homecinema.ui.home
 
+import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.sun.homecinema.R
@@ -30,6 +31,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(), View.OnClickListene
 
     override fun setupView() {
         binding.lifecycleOwner = viewLifecycleOwner
+        if(viewModel.currentPageTopRate == 0){
+            viewModel.getTopRate()
+        }
+        if(viewModel.currentPagePopular == 0){
+            viewModel.getPopular()
+        }
+        if(viewModel.currentPageUpComming == 0){
+            viewModel.getUpcoming()
+        }
         binding.homeVM = viewModel
         binding.recyclerViewUpcoming.adapter = upcomingAdapter
         binding.recyclerViewPopular.adapter = popularAdapter

@@ -2,8 +2,7 @@ package com.sun.homecinema.data.source
 
 import com.sun.homecinema.data.model.Actor
 import com.sun.homecinema.data.model.MovieActorResponse
-import com.sun.homecinema.data.model.MovieListResponse
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 interface ActorDataSource {
 

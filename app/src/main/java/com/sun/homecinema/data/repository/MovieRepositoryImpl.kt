@@ -2,7 +2,7 @@ package com.sun.homecinema.data.repository
 
 import com.sun.homecinema.data.model.*
 import com.sun.homecinema.data.source.MovieDataSource
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
     MovieRepository {
@@ -41,7 +41,7 @@ class MovieRepositoryImpl(private val remote: MovieDataSource.Remote) :
     override fun getVideo(movieId: Int): Observable<Video> =
         remote.getVideo(movieId).map { getTrailer(it.results) }
 
-    override fun search(param: String): Observable<List<SearchResponse>> =
+    override fun search(param: String): io.reactivex.rxjava3.core.Observable<List<SearchResponse>> =
         remote.search(param).map {
             it.response.filter { item ->
                 item.mediaType == SearchResponse.MOVIE || item.mediaType == SearchResponse.PERSON
