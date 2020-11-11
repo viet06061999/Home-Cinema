@@ -13,7 +13,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class SearchViewModel(
     private val movieRepository: MovieRepository
 ) : RxViewModel() {
-
     private val _search = MutableLiveData<List<SearchResponse>>()
     val search: LiveData<List<SearchResponse>>
         get() = _search
@@ -23,8 +22,12 @@ class SearchViewModel(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { _search.value = it },
-                {}
+                {
+                    _search.value = it
+                },
+                {
+                    error.value = it.message
+                }
             )
             .addTo(disposables)
     }
